@@ -1,0 +1,114 @@
+<definitions
+    name="MyService"
+    targetNamespace="http://example.com/"
+    xmlns:tns="http://example.com/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <message name="AddRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="AddResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="SubtractRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="SubtractResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="MultiplyRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="MultiplyResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="DivideRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="DivideResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <portType name="MyPort">
+        <operation name="Add">
+            <input message="tns:AddRequest"/>
+            <output message="tns:AddResponse"/>
+        </operation>
+        <operation name="Subtract">
+            <input message="tns:SubtractRequest"/>
+            <output message="tns:SubtractResponse"/>
+        </operation>
+        <operation name="Multiply">
+            <input message="tns:MultiplyRequest"/>
+            <output message="tns:MultiplyResponse"/>
+        </operation>
+        <operation name="Divide">
+            <input message="tns:DivideRequest"/>
+            <output message="tns:DivideResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="MyBinding" type="tns:MyPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="Add">
+            <soap:operation soapAction="http://example.com/Add"/>
+            <input>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="Subtract">
+            <soap:operation soapAction="http://example.com/Subtract"/>
+            <input>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="Multiply">
+            <soap:operation soapAction="http://example.com/Multiply"/>
+            <input>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="Divide">
+            <soap:operation soapAction="http://example.com/Divide"/>
+            <input>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://example.com/"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="MyService">
+        <port name="MyPort" binding="tns:MyBinding">
+            <soap:address location="http://localhost:8000/wsdl"/>
+        </port>
+    </service>
+
+</definitions>
